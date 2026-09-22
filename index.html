@@ -3,22 +3,22 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Alex Morgan — Portfolio & Project Showcase</title>
-    <meta name="description" content="Personal portfolio and product showcase highlighting AI engineering, machine learning research, and modern web applications." />
+    <title>Canvas — Minimal Starter Template (Svelte + Vite)</title>
+    <meta name="description" content="A minimal, spacious, and modern starter canvas built with Svelte and Vite." />
     <meta name="color-scheme" content="light dark" />
 
-    <!-- Google Font: Inter -->
+    <!-- Google Fonts: Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
 
-    <!-- Prevent Flash of Unstyled Content (FOUC) for Dark Mode -->
+    <!-- Prevent FOUC -->
     <script>
       (function() {
         try {
-          const storedTheme = localStorage.getItem('color-theme');
+          const stored = localStorage.getItem('color-theme');
           const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-          if (storedTheme === 'dark' || (!storedTheme && prefersDark)) {
+          if (stored === 'dark' || (!stored && prefersDark)) {
             document.documentElement.classList.add('dark');
             const meta = document.querySelector('meta[name="color-scheme"]');
             if (meta) meta.content = 'dark';
@@ -31,8 +31,8 @@
       })();
     </script>
   </head>
-  <body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased transition-colors duration-200">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+  <body class="min-h-screen bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white transition-colors duration-300">
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
   </body>
 </html>
