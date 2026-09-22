@@ -1,90 +1,139 @@
-# Showcase & Portfolio Template (HTML + Tailwind CSS)
+# Showcase & Portfolio Template (Vite + React + Tailwind CSS)
 
-A clean, modern, and zero-build starter template for building personal portfolios and product showcases. Designed specifically to work out-of-the-box with **zero terminal commands** and to be effortlessly customized using **AI assistants** (ChatGPT, Claude, Cursor, Gemini).
+A modern, minimal, and unopinionated starter template for personal portfolios, researcher showcases, and product demos. Built with **Vite**, **React**, and **Tailwind CSS**, this repository provides a lean, flexible foundation designed specifically for students and builders to scaffold and customize with **AI assistants** (ChatGPT, Claude, Cursor, Gemini).
 
 ---
 
 ## Features
 
-- **Zero Build Setup**: Pure HTML5 and Tailwind CSS (via CDN). No Node.js, `npm`, or build pipelines required. Double-click `index.html` to open it in any browser.
-- **GitHub Pages Ready**: One-click deployment from the `main` branch or via the included GitHub Actions workflow.
-- **Dark Mode Support**: Built-in dark/light mode toggle with system preference detection and `localStorage` persistence (no Flash of Unstyled Content).
-- **AI-Extensible Architecture**: Clear, semantic section tags and comments (`<!-- SECTION: ... -->`) making it easy to prompt an AI assistant to add, edit, or restyle components.
-- **Fully Responsive**: Mobile-first design with a responsive navigation drawer and fluid grid layouts.
-- **Unbranded**: Neutral and customizable design suitable for developer portfolios, researcher showcases, product landing pages, or hackathon demos.
+- **Blazing Fast Vite Build**: Sub-second dev server startup and Instant Hot Module Replacement (HMR).
+- **Modular Component Architecture**: Clean, single-responsibility components in `src/components/` that are easy to inspect, rearrange, or prompt an AI to rewrite.
+- **Tailwind CSS + Dark Mode**: Native Tailwind dark mode support with system preference detection and `localStorage` persistence (no Flash of Unstyled Content).
+- **Single-Source Data File**: Edit your projects, bio, skills, and links in `src/data/portfolioData.js` or directly inside the JSX components.
+- **GitHub Pages Ready**: Pre-configured with relative base paths (`base: process.env.BASE_PATH || './'`) and an automated `.github/workflows/deploy.yml` GitHub Actions workflow.
+- **Zero Bloat**: No heavy UI frameworks or complex state machines. Kept deliberately lightweight so you and your AI agent have full freedom to scaffold whatever you envision.
+
+---
+
+## Project Structure
+
+```text
+├── .github/
+│   └── workflows/
+│       └── deploy.yml          # GitHub Actions deployment to Pages
+├── index.html                  # HTML entry point with FOUC prevention
+├── package.json                # Project dependencies and npm scripts
+├── postcss.config.js           # PostCSS configuration
+├── tailwind.config.js          # Tailwind theme and dark mode setup
+├── vite.config.js              # Vite configuration (Pages base path)
+├── src/
+│   ├── App.jsx                 # Main layout orchestrator
+│   ├── index.css               # Tailwind directives & base styles
+│   ├── main.jsx                # React DOM entry point
+│   ├── context/
+│   │   └── ThemeContext.jsx    # Lightweight theme provider (light/dark)
+│   ├── data/
+│   │   └── portfolioData.js    # Default content, projects, and bio
+│   └── components/
+│       ├── Navbar.jsx          # Desktop & mobile nav + theme toggle
+│       ├── Hero.jsx            # Headline, bio, CTA & terminal card
+│       ├── About.jsx           # Personal background & interests
+│       ├── Projects.jsx        # Project cards grid with tags & links
+│       ├── Skills.jsx          # Categorized competency badges
+│       ├── Experience.jsx      # Vertical milestone timeline
+│       ├── Contact.jsx         # Call-to-action & social links
+│       └── Footer.jsx          # Copyright & back-to-top button
+```
+
+---
+
+## Prerequisites
+
+- **Node.js**: v18.0.0 or higher (v20+ recommended)
+- **npm** (included with Node.js) or **pnpm** / **yarn**
+
+Verify your environment:
+```bash
+node -v
+npm -v
+```
 
 ---
 
 ## Quick Start
 
-### 1. Preview Locally
-You do not need to install anything. Simply:
-- Double-click [`index.html`](index.html) to open it in your browser.
-- *(Optional)* In VS Code, right-click [`index.html`](index.html) and select **"Open with Live Server"**.
+### 1. Install Dependencies
+```bash
+npm install
+```
 
-### 2. Customize Content
-Open [`index.html`](index.html) in your favorite code editor. The file is organized into clearly labeled sections:
-- `<!-- ==================== NAVIGATION ==================== -->`: Brand name, nav links, and theme toggle.
-- `<!-- ==================== HERO SECTION ==================== -->`: Headline, intro pitch, and call-to-action buttons.
-- `<!-- ==================== SHOWCASE / PROJECTS ==================== -->`: Grid of project/product cards with tags and links.
-- `<!-- ==================== SKILLS & TECHNOLOGIES ==================== -->`: Badges for tools, frameworks, and languages.
-- `<!-- ==================== EXPERIENCE & MILESTONES ==================== -->`: Timeline of roles, education, or version releases.
-- `<!-- ==================== CONTACT & SOCIAL ==================== -->`: Links to GitHub, LinkedIn, email, and social profiles.
-- `<!-- ==================== FOOTER ==================== -->`: Copyright and back-to-top link.
+### 2. Start the Local Development Server
+```bash
+npm run dev
+```
+Open your browser at `http://localhost:5173` (or the URL displayed in your terminal). Any changes you make to the code will reflect instantly in the browser.
 
----
-
-## Working with AI Assistants
-
-This template is structured so that you can prompt an AI assistant to make changes without breaking styles or build configs.
-
-### Example Prompts to Copy & Paste
-
-- **Add a New Project**:
-  > *"I want to add a new project to the Showcase section in [`index.html`](index.html). The project is called 'Autonomous Drone Nav', built with PyTorch and ROS. It has a GitHub link and a live demo link. Give me the HTML card block to insert."*
-
-- **Change Theme Colors**:
-  > *"Change the primary accent color in the Tailwind script config from indigo to emerald green throughout [`index.html`](index.html)."*
-
-- **Convert to a Product Landing Page**:
-  > *"Adapt the Hero and Showcase sections of [`index.html`](index.html) to pitch a developer SaaS tool called 'FastAPI Studio' instead of a personal portfolio."*
+### 3. Build & Preview for Production
+To test the production build locally:
+```bash
+npm run build
+npm run preview
+```
+The compiled static assets will be output to the `dist/` directory.
 
 ---
 
 ## Deploying to GitHub Pages
 
-### Method A: Deploy from Branch (Fastest)
-1. Push this repository to GitHub.
-2. In your GitHub repository, navigate to **Settings** > **Pages**.
-3. Under **Build and deployment** > **Source**, choose **Deploy from a branch**.
-4. Set the branch to `main` and folder to `/ (root)`. Click **Save**.
-5. Your site will be live at `https://<username>.github.io/<repo-name>/` within a minute.
+This template includes a ready-to-run GitHub Actions workflow in [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
 
-### Method B: GitHub Actions Workflow
-A ready-to-run deployment workflow is included in [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
-In repository **Settings** > **Pages**, set **Source** to **GitHub Actions**, and any push to `main` will automatically deploy.
+### Step-by-Step Setup:
+1. Push your repository to GitHub.
+2. In your GitHub repository, navigate to **Settings** > **Pages**.
+3. Under **Build and deployment** > **Source**, select **GitHub Actions**.
+4. Push a commit to the `main` branch (or run the workflow manually via the **Actions** tab).
+5. GitHub Actions will install dependencies, build the Vite app, and deploy the `dist/` bundle to `https://<username>.github.io/<repo-name>/`.
+
+> **Note on Base Paths**: The `vite.config.js` uses `base: process.env.BASE_PATH || './'`, ensuring all assets load correctly regardless of whether the site is served from a root domain or a repository subpath (e.g. `/my-portfolio/`).
 
 ---
 
-## Architectural Comparison: Simple vs. Standard Development
+## Scaffolding & Customizing with AI
 
-When building a website, you generally choose between two approaches. Use this section to evaluate which path fits your project goals:
+This repository is designed to be an AI-friendly playground. Because components are decoupled and unopinionated, you can prompt your favorite AI assistant to reshape the site quickly.
 
-| Feature / Goal | Simple Approach (This Template) | Standard Web Dev Approach |
+### Example Prompts
+
+#### 1. Personalize Content
+> *"I'm customizing this portfolio template. Look at `src/data/portfolioData.js`. Replace the placeholder info with my background: Computer Science student at UConn, focused on NLP research. Here are my 3 projects: [Project 1], [Project 2], [Project 3]."*
+
+#### 2. Re-scaffold into a Product Landing Page
+> *"Help me convert this portfolio into a SaaS product landing page in `src/App.jsx`. Replace the Experience and Skills sections with a Features grid and a Pricing table component in `src/components/`."*
+
+#### 3. Add an Interactive Filter or Search
+> *"In `src/components/Projects.jsx`, add category filter buttons ('All', 'AI/ML', 'Web') above the project grid and implement state to filter the displayed projects."*
+
+#### 4. Switch Color Palette or Styling
+> *"In `tailwind.config.js`, change the primary brand color palette from indigo to emerald green, and add a subtle hover animation to each card in `src/components/Projects.jsx`."*
+
+#### 5. Add a Working Contact Form
+> *"Replace the static contact links in `src/components/Contact.jsx` with an interactive form that sends messages via Formspree or EmailJS."*
+
+---
+
+## Architectural Comparison
+
+| Dimension | Approach 1: Simple (HTML + Tailwind CDN) | Approach 2: Standard (This Template - Vite + React) |
 | :--- | :--- | :--- |
-| **Tech Stack** | Pure HTML5 + Tailwind CDN | Vite / Next.js / Astro + Tailwind CLI |
-| **Prerequisites** | None. No Node.js, npm, or terminal required. | Node.js (v18+), npm/pnpm, terminal comfort. |
-| **Time to First Edit** | Instant (< 1 minute). | 5–10 minutes (`npm install`, dev server). |
-| **AI Collaboration** | **High & forgiving**: AI generates clean HTML blocks; no risk of build errors or broken imports. | **Moderate**: AI can write modern components, but students must troubleshoot compilation errors. |
-| **Modularity** | Single or multi-page HTML with semantic section comments. | Reusable component files (`<Navbar />`, `<Card />`). |
-| **Deployment** | 1-click GitHub Pages directly from `/ (root)`. | Requires a build step and CI/CD workflow (`npm run build`). |
-| **When to Choose** | You want to launch quickly, showcase work, and focus on content and design using AI. | You are building a complex web app with heavy state management, external APIs, or team collaboration. |
-
-### Upgrading to a Standard Build Later
-If your project grows to dozens of pages or requires complex JavaScript libraries, you can ask your AI assistant:
-> *"Help me convert my [`index.html`](index.html) into a Vite + Tailwind CSS project while preserving all styling and structure."*
+| **Tech Stack** | Pure HTML5 + Tailwind CDN script | Vite 6 + React 18 + Tailwind CSS 3 |
+| **Prerequisites** | None (double-click `index.html`) | Node.js 18+ and npm |
+| **Modularity** | Single HTML file with semantic comments | Reusable JSX components & shared Theme Context |
+| **State Management** | Vanilla JS DOM manipulation | React hooks (`useState`, `useContext`, `useEffect`) |
+| **Extensibility** | Best for quick static pages & copy tweaks | Best for interactive apps, routing, and dynamic data |
+| **Build Pipeline** | Zero build step | Optimized tree-shaken production bundle (`npm run build`) |
 
 ---
 
 ## License
+
 MIT License. Free to use, adapt, and share.
